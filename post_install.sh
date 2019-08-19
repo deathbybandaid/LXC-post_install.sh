@@ -4,17 +4,13 @@
 ####################################################################################
 
 
-# Update Container
-echo "Running Updates"
-apt-get update -qq && apt-get upgrade -qq
-echo "Updates installed"
-echo
-
 ## Simple test if Whiptail is installed for dialogue boxes.
 if which whiptail >/dev/null;
   then
     :
   else
+    echo "installing whiptail"
+    apt-get update -qq
     apt-get install -y whiptail
 fi
 
@@ -32,6 +28,13 @@ if  (whiptail --title "Apt-Cacher-NG" --yes-button "Proceed" --no-button "Skip" 
     echo "Proxy installed"
     echo
 fi
+
+
+# Update Container
+echo "Running Updates"
+apt-get update -qq && apt-get upgrade -qq
+echo "Updates installed"
+echo
 
 # install sudo
 echo "Installing sudo"
